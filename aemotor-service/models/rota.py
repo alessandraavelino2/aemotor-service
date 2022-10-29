@@ -1,5 +1,15 @@
 
-class Rota():
+from helpers.database import db
+class Rota(db.Models):
+    __tablename__ = "tb_rota"
+    id = db.Column(db.Integer, primary_key=True)
+    cidadeDestino = db.Column(db.String(100), nullable=False)
+    qtdalunos = db.Column(db.String(7), nullable=False)
+    prefeitura = db.Column(db.String(100), nullable=False)
+    veiculo = db.Column(db.String(50), nullable=False)
+    horaSaida = db.Column(db.datetime(), nullable=False)
+    horaChegada = db.Column(db.datetime(), nullable=False)
+    passageiro = db.Column(db.String(100), nullable=False)
 
     def __init__(self, cidadeDestino, qtdAlunos, prefeitura, veiculo, horaSaida, horaChegada, passageiro):
         self.cidadeDestino = cidadeDestino
