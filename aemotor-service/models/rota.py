@@ -11,6 +11,11 @@ class Rota(db.Models):
     horaChegada = db.Column(db.datetime(), nullable=False)
     passageiro = db.Column(db.String(100), nullable=False)
 
+    prefeituraChild = db.relationship("Prefeitura", uselist=False)
+    instituicaoDeEnsino = db.relationship('InstituicaoDeEnsino', backref='InstituicaoDeEnsino', lazy=True)
+    alunos = db.relationship('Aluno', backref='Aluno', lazy=True)
+    
+
     def __init__(self, cidadeDestino, qtdAlunos, prefeitura, veiculo, horaSaida, horaChegada, passageiro):
         self.cidadeDestino = cidadeDestino
         self.qtdAlunos = qtdAlunos

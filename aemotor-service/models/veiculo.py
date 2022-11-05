@@ -7,6 +7,8 @@ class Veiculo(db.Models):
     qtdPassageiros = db.Column(db.String(7), nullable=False)
     tipoVeiculo = db.Column(db.String(50), nullable=False)
     placa = db.Column(db.String(10), nullable=False)
+    motoristaParentId = db.Column(db.Integer, db.ForeignKey("tb_motorista.id"))
+    
     def __init__(self, cidade, qtdPassageiros, tipoVeiculo, placa):
         self.cidade = cidade
         self.qtdPassageiros = qtdPassageiros

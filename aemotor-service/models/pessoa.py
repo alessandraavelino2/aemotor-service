@@ -1,3 +1,4 @@
+from sqlalchemy.types import String
 from helpers.database import db
 
 class Pessoa(db.Models):
@@ -9,9 +10,15 @@ class Pessoa(db.Models):
     email = db.Column(db.String(100), nullable=False)
     telefone = db.Column(db.String(11), nullable=False)
 
-    child = db.relationship("Aluno", uselist=False)
-    child = db.relationship("Funcionario", uselist=False)
+    alunoChild = db.relationship("Aluno", uselist=False)
+    funcionarioChild = db.relationship("Funcionario", uselist=False)
+    gestorAppChild = db.relationship("GestorApp", uselist=False)
+    prefeitoChild = db.relationship("Prefeito", uselist=False)
+    enderecoChild = db.relationship("Endereco", uselist=False)
 
+    # Herança: Superclasse
+    tipo_pessoa = db.Column('tipo_pessoa', String(50))
+    __mapper_args__ = {'polymorphic_on': tipo_pessoa}
     def __init__(self, nome, nascimento, email, telefone):
         self.nome = nome
         self.nascimento = nascimento
